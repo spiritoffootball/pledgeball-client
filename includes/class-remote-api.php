@@ -52,7 +52,7 @@ class Pledgeball_Client_Remote_API {
 	 *
 	 * @since 1.0
 	 * @access protected
-	 * @var string $app_pwd True if calling a localhost site.
+	 * @var string $localhost True if calling a localhost site.
 	 */
 	protected $localhost = false;
 
