@@ -30,15 +30,6 @@ class Pledgeball_Client_Remote {
 	public $plugin;
 
 	/**
-	 * API object.
-	 *
-	 * @since 1.0
-	 * @access public
-	 * @var object $api The API object.
-	 */
-	public $api;
-
-	/**
 	 * Cache object.
 	 *
 	 * @since 1.0
@@ -49,6 +40,8 @@ class Pledgeball_Client_Remote {
 
 	/**
 	 * Transient key.
+	 *
+	 * Unused as yet, but probably useful in the future.
 	 *
 	 * @since 1.0
 	 * @access public
