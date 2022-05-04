@@ -156,11 +156,6 @@ class Pledgeball_Client_Remote {
 		// Send the data.
 		$response = $connection->post( 'wp-json/wp/v2/pledge', $data );
 
-		// Bail on failure.
-		if ( $response === false ) {
-			return;
-		}
-
 		/*
 		 * Return should be something like:
 		 *
@@ -186,7 +181,9 @@ class Pledgeball_Client_Remote {
 			];
 
 			// Add to cache.
-			$this->cache->queue_add( $query );
+			// Disabled, but shows how this would be done.
+			// phpcs:ignore Squiz.Commenting.InlineComment.InvalidEndChar
+			//$this->cache->queue_add( $query );
 
 			// --<
 			return false;
