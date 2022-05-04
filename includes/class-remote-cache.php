@@ -160,6 +160,8 @@ class Pledgeball_Client_Remote_Cache {
 	 * Saves the queue of queries to perform.
 	 *
 	 * @since 1.0
+	 *
+	 * @param array $queue The array of queries to perform.
 	 */
 	public function queue_save( $queue ) {
 

@@ -128,6 +128,7 @@ class Pledgeball_Client_Remote_API {
 		if ( $auth === true ) {
 
 			// Construct authentication string.
+			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 			$auth = 'Basic ' . base64_encode( $this->username . ':' . $this->app_pwd );
 
 			// Build headers array.
@@ -178,6 +179,7 @@ class Pledgeball_Client_Remote_API {
 		$result = false;
 
 		// POST always requires authentication.
+		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 		$auth = 'Basic ' . base64_encode( $this->username . ':' . $this->app_pwd );
 
 		// Build headers array.
@@ -228,6 +230,7 @@ class Pledgeball_Client_Remote_API {
 		$result = false;
 
 		// DELETE always requires authentication.
+		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 		$auth = 'Basic ' . base64_encode( $this->username . ':' . $this->app_pwd );
 
 		// Build headers array.
@@ -273,6 +276,7 @@ class Pledgeball_Client_Remote_API {
 		$result = false;
 
 		// Always add authentication.
+		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 		$auth = 'Basic ' . base64_encode( $this->username . ':' . $this->app_pwd );
 
 		// Build headers array.
@@ -310,7 +314,7 @@ class Pledgeball_Client_Remote_API {
 
 		// Disregard SSL on localhost.
 		if ( $this->localhost === true ) {
-			add_filter( 'https_ssl_verify', [ $this, 'ssl_verify_disable'] );
+			add_filter( 'https_ssl_verify', [ $this, 'ssl_verify_disable' ] );
 		}
 
 	}
@@ -328,7 +332,7 @@ class Pledgeball_Client_Remote_API {
 
 		// Reimplement SSL checks.
 		if ( $this->localhost === true ) {
-			remove_filter( 'https_ssl_verify', [ $this, 'ssl_verify_disable'] );
+			remove_filter( 'https_ssl_verify', [ $this, 'ssl_verify_disable' ] );
 		}
 
 		// Init return.
