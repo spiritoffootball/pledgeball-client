@@ -47,4 +47,20 @@ define( 'PLEDGEBALL_HOST', 'localhost' );
 
 The plugin is now ready to use.
 
-Note: at some point, these credentials can be stored via an admin settings page.
+Note: at some point, these credentials will be stored via an admin settings page.
+
+## Usage
+
+This plugin provides Shortcodes that allow Pledgeball Forms to be embedded in WordPress pages.
+
+### Standalone Pledge (API missing)
+
+Use `[pledgeball_pledge_form]` to embed a Standalone Pledge submission Form.
+
+### Event (not ready yet)
+
+Use `[pledgeball_event_form]` to embed an Event submission Form.
+
+### Code Library
+
+Check out the methods in the `Pledgeball_Client_Remote` class for simple access to the Pledgeball API in code.
