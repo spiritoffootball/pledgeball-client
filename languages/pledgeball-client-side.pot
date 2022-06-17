@@ -1,46 +1,156 @@
-# Copyright (C) 2022 Pledgeball Client
-# This file is distributed under the same license as the Pledgeball Client package.
+# Copyright (C) 2022 Christian Wach
+# This file is distributed under the same license as the Pledgeball Client plugin.
 msgid ""
 msgstr ""
 "Project-Id-Version: Pledgeball Client 1.0a\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pledgeball-client-"
-"side\n"
-"POT-Creation-Date: 2022-05-04 11:41:08+00:00\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pledgeball-client-side\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2022-06-17T21:35:33+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: pledgeball-client-side\n"
 
-#: includes/class-remote-api.php:356
-msgid "Response is not an array."
-msgstr ""
-
-#: includes/class-remote-api.php:369
-msgid "Request was not successful."
-msgstr ""
-
-#: includes/class-remote-api.php:382
-msgid "Failed to decode JSON."
-msgstr ""
-
-#. Plugin Name of the plugin/theme
+#. Plugin Name of the plugin
 msgid "Pledgeball Client"
 msgstr ""
 
-#. Plugin URI of the plugin/theme
+#. Plugin URI of the plugin
 msgid "https://github.com/pledgeball/pledgeball-client-side"
 msgstr ""
 
-#. Description of the plugin/theme
+#. Description of the plugin
 msgid "Enables access to the Pledgeball API."
 msgstr ""
 
-#. Author of the plugin/theme
+#. Author of the plugin
 msgid "Christian Wach"
 msgstr ""
 
-#. Author URI of the plugin/theme
+#. Author URI of the plugin
 msgid "https://theball.tv"
+msgstr ""
+
+msgid "Create an Event"
+msgstr ""
+
+msgid "Your Details"
+msgstr ""
+
+msgid "First Name"
+msgstr ""
+
+msgid "Last Name"
+msgstr ""
+
+msgid "Email Address"
+msgstr ""
+
+msgid "Phone Number"
+msgstr ""
+
+msgid "Event Details"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Create Event"
+msgstr ""
+
+msgid "Submit a Standalone Pledge"
+msgstr ""
+
+msgid "Choose Your Pledges"
+msgstr ""
+
+msgid "Thank you for supporting PledgeBall and helping the planet!"
+msgstr ""
+
+msgid "Almost There"
+msgstr ""
+
+msgid "Submit Pledge"
+msgstr ""
+
+msgid "Please complete the fields marked in red."
+msgstr ""
+
+msgid "Submitting..."
+msgstr ""
+
+msgid "Could not submit the Event. Please try again."
+msgstr ""
+
+msgid "Authentication failed. Could not submit the Event."
+msgstr ""
+
+msgid "Please enter a valid Email Address."
+msgstr ""
+
+msgid "Please enter a valid Event title."
+msgstr ""
+
+msgid "Your Event has been submitted."
+msgstr ""
+
+msgid "Sorry, something went wrong. Please reload and try again."
+msgstr ""
+
+#. translators: %s The number of kilogrammes.
+msgid "Saves %s kg of CO<sub>2</sub>e per year."
+msgstr ""
+
+msgid "Saves CO<sub>2</sub>e but hard to quantify."
+msgstr ""
+
+msgid "More information"
+msgstr ""
+
+msgid "I consent to my details being stored by PledgeBall (required)"
+msgstr ""
+
+msgid "Tick to receive occasional updates about the impact of you and your fellow Pledgeballers (and if you like freebies). NB please tick even if you have already subscribed otherwise you will be unsubscribed."
+msgstr ""
+
+msgid "Please choose at least one Pledge."
+msgstr ""
+
+msgid "Could not submit the Pledge. Please try again."
+msgstr ""
+
+msgid "Authentication failed. Could not submit the Pledge."
+msgstr ""
+
+msgid "Please enter a First Name."
+msgstr ""
+
+msgid "Please enter a Last Name."
+msgstr ""
+
+msgid "Cannot submit your Pledge unless you consent to us storing your data."
+msgstr ""
+
+msgid "Your Pledge has been submitted. Thanks for taking part!"
+msgstr ""
+
+msgid "Response is not an array."
+msgstr ""
+
+msgid "Request was not successful."
+msgstr ""
+
+msgid "Failed to decode JSON."
 msgstr ""
