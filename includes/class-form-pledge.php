@@ -157,6 +157,9 @@ class Pledgeball_Client_Form_Pledge_Submit {
 				/* translators: %s The number of kilogrammes. */
 				$saving = ' <span>' . sprintf( __( 'Saves %s kg of CO<sub>2</sub>e per year.', 'pledgeball-client-side' ), esc_html( $pledge->KgCO2e ) ) . '</span>';
 			}
+			if ( ! empty( $pledge->KgCO2e ) && $pledge->KgCO2e == '-1' ) {
+				$saving = ' <span>' . __( 'Saves CO<sub>2</sub>e but hard to quantify.', 'pledgeball-client-side' ) . '</span>';
+			}
 
 			$context = '';
 			if ( ! empty( $pledge->UsefulURL ) ) {
