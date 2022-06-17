@@ -153,7 +153,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 			$label = '<label for="pledgeball_id_' . esc_attr( $pledge->Number ) . '">' . esc_html( $pledge->Description ) . '</label>';
 
 			$saving = '';
-			if ( ! empty( $pledge->UsefulURL ) ) {
+			if ( ! empty( $pledge->KgCO2e ) && $pledge->KgCO2e != '-1' ) {
 				/* translators: %s The number of kilogrammes. */
 				$saving = ' <span>' . sprintf( __( 'Saves %s kg of CO<sub>2</sub>e per year.', 'pledgeball-client-side' ), esc_html( $pledge->KgCO2e ) ) . '</span>';
 			}
@@ -502,16 +502,6 @@ class Pledgeball_Client_Form_Pledge_Submit {
 			wp_send_json( $data );
 		}
 
-		/*
-		$e = new \Exception();
-		$trace = $e->getTraceAsString();
-		error_log( print_r( [
-			'method' => __METHOD__,
-			'POST' => $_POST,
-			//'backtrace' => $trace,
-		], true ) );
-		*/
-
 		// Extract "First Name".
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$first_name_raw = isset( $_POST['first_name'] ) ? trim( wp_unslash( $_POST['first_name'] ) ) : '';
@@ -597,23 +587,6 @@ class Pledgeball_Client_Form_Pledge_Submit {
 			];
 		}
 
-		/*
-		$e = new \Exception();
-		$trace = $e->getTraceAsString();
-		error_log( print_r( [
-			'method' => __METHOD__,
-			'first_name' => $first_name,
-			'last_name' => $last_name,
-			'email' => $email,
-			'pledge_ids' => $pledge_ids,
-			'pledges' => $pledges,
-			'other' => $other,
-			'consent' => $consent ? 'y' : 'n',
-			'okemails' => $okemails === 1 ? 'y' : 'n',
-			//'backtrace' => $trace,
-		], true ) );
-		*/
-
 		// Let's make an array of submission data.
 		$submission = [
 			'firstname' => $first_name,
@@ -679,16 +652,6 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		if ( ! wp_verify_nonce( wp_unslash( $_POST[ $this->nonce_name ] ), $this->nonce_action ) ) {
 			$this->form_redirect( [ 'error' => 'no-auth' ] );
 		}
-
-		/*
-		$e = new \Exception();
-		$trace = $e->getTraceAsString();
-		error_log( print_r( [
-			'method' => __METHOD__,
-			'POST' => $_POST,
-			//'backtrace' => $trace,
-		], true ) );
-		*/
 
 		// Extract "First Name".
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -769,21 +732,6 @@ class Pledgeball_Client_Form_Pledge_Submit {
 				'other' => $other_value,
 			];
 		}
-
-		/*
-		$e = new \Exception();
-		$trace = $e->getTraceAsString();
-		error_log( print_r( [
-			'method' => __METHOD__,
-			'first_name' => $first_name,
-			'last_name' => $last_name,
-			'email' => $email,
-			'pledges' => $pledges,
-			'consent' => $consent ? 'y' : 'n',
-			'okemails' => $okemails === 1 ? 'y' : 'n',
-			//'backtrace' => $trace,
-		], true ) );
-		*/
 
 		// Let's make an array of submission data.
 		$submission = [

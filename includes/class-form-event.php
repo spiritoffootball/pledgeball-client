@@ -432,16 +432,6 @@ class Pledgeball_Client_Form_Event_Create {
 			wp_send_json( $data );
 		}
 
-		/*
-		$e = new \Exception();
-		$trace = $e->getTraceAsString();
-		error_log( print_r( [
-			'method' => __METHOD__,
-			'POST' => $_POST,
-			//'backtrace' => $trace,
-		], true ) );
-		*/
-
 		// Extract mandatory Email.
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$email_raw = isset( $_POST['email'] ) ? trim( wp_unslash( $_POST['email'] ) ) : '';
@@ -474,20 +464,6 @@ class Pledgeball_Client_Form_Event_Create {
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$phone_raw = isset( $_POST['phone'] ) ? trim( wp_unslash( $_POST['phone'] ) ) : '';
 		$phone = sanitize_text_field( $phone_raw );
-
-		/*
-		$e = new \Exception();
-		$trace = $e->getTraceAsString();
-		error_log( print_r( [
-			'method' => __METHOD__,
-			'first_name' => $first_name,
-			'last_name' => $last_name,
-			'email' => $email,
-			'phone' => $phone,
-			'title' => $title,
-			//'backtrace' => $trace,
-		], true ) );
-		*/
 
 		// Let's make an array of submission data.
 		$submission = [
@@ -554,16 +530,6 @@ class Pledgeball_Client_Form_Event_Create {
 			$this->form_redirect( [ 'error' => 'no-auth' ] );
 		}
 
-		/*
-		$e = new \Exception();
-		$trace = $e->getTraceAsString();
-		error_log( print_r( [
-			'method' => __METHOD__,
-			'POST' => $_POST,
-			//'backtrace' => $trace,
-		], true ) );
-		*/
-
 		// Extract mandatory Email.
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$email_raw = isset( $_POST['pledgeball_email'] ) ? trim( wp_unslash( $_POST['pledgeball_email'] ) ) : '';
@@ -600,20 +566,6 @@ class Pledgeball_Client_Form_Event_Create {
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$phone_raw = isset( $_POST['pledgeball_phone'] ) ? trim( wp_unslash( $_POST['pledgeball_phone'] ) ) : '';
 		$phone = sanitize_text_field( $phone_raw );
-
-		/*
-		$e = new \Exception();
-		$trace = $e->getTraceAsString();
-		error_log( print_r( [
-			'method' => __METHOD__,
-			'first_name' => $first_name,
-			'last_name' => $last_name,
-			'email' => $email,
-			'phone' => $phone,
-			'title' => $title,
-			//'backtrace' => $trace,
-		], true ) );
-		*/
 
 		// Let's make an array of submission data.
 		$submission = [

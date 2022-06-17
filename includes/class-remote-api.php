@@ -152,15 +152,6 @@ class Pledgeball_Client_Remote_API {
 		// Pre-request check.
 		$this->pre_request();
 
-		$e = new \Exception();
-		$trace = $e->getTraceAsString();
-		error_log( print_r( [
-			'method' => __METHOD__,
-			'url' => $this->url . $endpoint,
-			'args' => $args,
-			//'backtrace' => $trace,
-		], true ) );
-
 		// Fire the GET request.
 		$response = wp_remote_get( $this->url . $endpoint, $args );
 
