@@ -152,6 +152,15 @@ class Pledgeball_Client_Remote_API {
 		// Pre-request check.
 		$this->pre_request();
 
+		$e = new \Exception();
+		$trace = $e->getTraceAsString();
+		error_log( print_r( [
+			'method' => __METHOD__,
+			'url' => $this->url . $endpoint,
+			'args' => $args,
+			//'backtrace' => $trace,
+		], true ) );
+
 		// Fire the GET request.
 		$response = wp_remote_get( $this->url . $endpoint, $args );
 
@@ -342,12 +351,12 @@ class Pledgeball_Client_Remote_API {
 		if ( is_wp_error( $response ) ) {
 			$e = new \Exception();
 			$trace = $e->getTraceAsString();
-			error_log( print_r( [
+			$this->log_error( [
 				'method' => __METHOD__,
 				'message' => $response->get_error_message(),
 				'response' => $response,
 				'backtrace' => $trace,
-			], true ) );
+			] );
 			return $result;
 		}
 
@@ -355,12 +364,12 @@ class Pledgeball_Client_Remote_API {
 		if ( ! is_array( $response ) ) {
 			$e = new \Exception();
 			$trace = $e->getTraceAsString();
-			error_log( print_r( [
+			$this->log_error( [
 				'method' => __METHOD__,
 				'error' => __( 'Response is not an array.', 'pledgeball-client-side' ),
 				'response' => $response,
 				'backtrace' => $trace,
-			], true ) );
+			] );
 			return $result;
 		}
 
@@ -368,12 +377,12 @@ class Pledgeball_Client_Remote_API {
 		if ( empty( $response['response']['code'] ) || ! in_array( (int) $response['response']['code'], $success_codes ) ) {
 			$e = new \Exception();
 			$trace = $e->getTraceAsString();
-			error_log( print_r( [
+			$this->log_error( [
 				'method' => __METHOD__,
 				'error' => __( 'Request was not successful.', 'pledgeball-client-side' ),
 				'response' => $response,
 				'backtrace' => $trace,
-			], true ) );
+			] );
 			return $result;
 		}
 
@@ -381,12 +390,12 @@ class Pledgeball_Client_Remote_API {
 		try {
 			$result = json_decode( $response['body'] );
 		} catch ( Exception $ex ) {
-			error_log( print_r( [
+			$this->log_error( [
 				'method' => __METHOD__,
 				'error' => __( 'Failed to decode JSON.', 'pledgeball-client-side' ),
 				'response' => $response,
 				'backtrace' => $ex->getTraceAsString(),
-			], true ) );
+			] );
 			$result = false;
 		}
 
@@ -402,6 +411,35 @@ class Pledgeball_Client_Remote_API {
 	 */
 	public function ssl_verify_disable() {
 		return false;
+	}
+
+	/**
+	 * Write to the error log.
+	 *
+	 * @since 1.0
+	 *
+	 * @param array $data The data to write to the log file.
+	 */
+	public function log_error( $data = [] ) {
+
+		// Skip if not debugging.
+		if ( PLEDGEBALL_CLIENT_DEBUG === false ) {
+			return;
+		}
+
+		// Skip if empty.
+		if ( empty( $data ) ) {
+			return;
+		}
+
+		// Format data.
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
+		$error = print_r( $data, true );
+
+		// Write to log file.
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+		error_log( $error );
+
 	}
 
 }

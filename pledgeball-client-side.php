@@ -37,6 +37,11 @@ if ( ! defined( 'PLEDGEBALL_CLIENT_PATH' ) ) {
 	define( 'PLEDGEBALL_CLIENT_PATH', plugin_dir_path( PLEDGEBALL_CLIENT_FILE ) );
 }
 
+// Set plugin debugging state.
+if ( ! defined( 'PLEDGEBALL_CLIENT_DEBUG' ) ) {
+	define( 'PLEDGEBALL_CLIENT_DEBUG', false );
+}
+
 
 
 /**
@@ -193,6 +198,8 @@ class Pledgeball_Client {
 	}
 
 }
+
+
 
 /**
  * Loads plugin if not yet loaded and return reference.
