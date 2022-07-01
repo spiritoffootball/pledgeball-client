@@ -497,14 +497,11 @@ class Pledgeball_Client_Remote {
 	 */
 	public function pledge_create( $data ) {
 
-		// Disabled for now.
-		return false;
-
 		// Get connection instance.
 		$connection = new Pledgeball_Client_Remote_API();
 
 		// Send the data.
-		$response = $connection->post( 'wp-json/pledgeapi/v1/storepledge', $data );
+		$response = $connection->post( 'wp-json/pledgeapi/v1/storepledges', $data );
 
 		// We do not need caching for this particular method.
 		if ( $response === false ) {
