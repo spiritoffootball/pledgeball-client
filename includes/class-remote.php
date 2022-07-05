@@ -144,15 +144,16 @@ class Pledgeball_Client_Remote {
 	 *
 	 * @since 1.0
 	 *
+	 * @param array $args The optional array of key/value pairs to send to the API.
 	 * @return array|bool $pledges The Pledge definitions if retrieved, false otherwise.
 	 */
-	public function definitions_get_all() {
+	public function definitions_get_all( $args = [] ) {
 
 		// Get connection instance.
 		$connection = new Pledgeball_Client_Remote_API();
 
 		// Send the request.
-		$response = $connection->get( 'wp-json/pledgeapi/v1/pledgelist' );
+		$response = $connection->get( 'wp-json/pledgeapi/v1/pledgelist', $args );
 
 		// We do not need caching for this particular method.
 		if ( $response === false ) {
