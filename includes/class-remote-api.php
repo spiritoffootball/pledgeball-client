@@ -171,9 +171,10 @@ class Pledgeball_Client_Remote_API {
 	 * @param string $endpoint The Remote API endpoint.
 	 * @param array $body The PHP array of params to send.
 	 * @param array $headers The headers to send.
+	 * @param bool $json Whether or not to JSON-encode the payload.
 	 * @return array|bool $result The response array, or false on failure.
 	 */
-	public function post( $endpoint, $body = [], $headers = [] ) {
+	public function post( $endpoint, $body = [], $headers = [], $json = false ) {
 
 		// Init return.
 		$result = false;
@@ -185,13 +186,18 @@ class Pledgeball_Client_Remote_API {
 		// Build headers array.
 		$http_headers = [
 			'Authorization' => $auth,
-			'Content-Type' => 'application/json',
 		] + $headers;
+
+		// Maybe JSON-encode payload.
+		if ( true === $json ) {
+			$http_headers['Content-Type'] = 'application/json';
+			$body = wp_json_encode( $body );
+		}
 
 		// Build POST arguments.
 		$args = [
 			'headers' => $http_headers,
-			'body' => wp_json_encode( $body ),
+			'body' => $body,
 		];
 
 		// Pre-request check.

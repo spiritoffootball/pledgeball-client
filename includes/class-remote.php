@@ -501,8 +501,8 @@ class Pledgeball_Client_Remote {
 		// Get connection instance.
 		$connection = new Pledgeball_Client_Remote_API();
 
-		// Send the data.
-		$response = $connection->post( 'wp-json/pledgeapi/v1/storepledges', $data );
+		// Send JSON-encoded data.
+		$response = $connection->post( 'wp-json/pledgeapi/v1/storepledges', $data, [], true );
 
 		// We do not need caching for this particular method.
 		if ( $response === false ) {
@@ -530,8 +530,8 @@ class Pledgeball_Client_Remote {
 		// Get connection instance.
 		$connection = new Pledgeball_Client_Remote_API();
 
-		// Send the data.
-		$response = $connection->post( 'wp-json/pledgeapi/v1/storepledges', $data );
+		// Send JSON-encoded data.
+		$response = $connection->post( 'wp-json/pledgeapi/v1/storepledges', $data, [], true );
 
 		/*
 		 * Return should be something like:
