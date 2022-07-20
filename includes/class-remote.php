@@ -153,7 +153,7 @@ class Pledgeball_Client_Remote {
 		$connection = new Pledgeball_Client_Remote_API();
 
 		// Send the request.
-		$response = $connection->get( 'wp-json/pledgeapi/v1/pledgelist', $args );
+		$response = $connection->get( 'wp-json/pledgeapi/v1/pledgelist', $args, true );
 
 		// We do not need caching for this particular method.
 		if ( $response === false ) {
