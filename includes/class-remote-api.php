@@ -127,6 +127,17 @@ class Pledgeball_Client_Remote_API {
 		// Some GET requests require authentication.
 		if ( $auth === true ) {
 
+			/*
+			$e = new \Exception();
+			$trace = $e->getTraceAsString();
+			error_log( print_r( [
+				'method' => __METHOD__,
+				'this->username' => $this->username,
+				'this->app_pwd' => $this->app_pwd,
+				//'backtrace' => $trace,
+			], true ) );
+			*/
+
 			// Construct authentication string.
 			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 			$auth = 'Basic ' . base64_encode( $this->username . ':' . $this->app_pwd );
@@ -152,11 +163,22 @@ class Pledgeball_Client_Remote_API {
 		// Pre-request check.
 		$this->pre_request();
 
+		/*
+		$e = new \Exception();
+		$trace = $e->getTraceAsString();
+		error_log( print_r( [
+			'method' => __METHOD__,
+			'url' => $this->url . $endpoint,
+			'args' => $args,
+			//'backtrace' => $trace,
+		], true ) );
+		*/
+
 		// Fire the GET request.
 		$response = wp_remote_get( $this->url . $endpoint, $args );
 
 		// Post-request checks.
-		$result = $this->post_request( $response );
+		$result = $this->post_request( $response, [ 200 ], $this->url . $endpoint, $args );
 
 		// --<
 		return $result;
@@ -203,8 +225,29 @@ class Pledgeball_Client_Remote_API {
 		// Pre-request check.
 		$this->pre_request();
 
+		/*
+		$e = new \Exception();
+		$trace = $e->getTraceAsString();
+		error_log( print_r( [
+			'method' => __METHOD__,
+			'url' => $this->url . $endpoint,
+			'args' => $args,
+			//'backtrace' => $trace,
+		], true ) );
+		*/
+
 		// Fire the POST request.
 		$response = wp_remote_post( $this->url . $endpoint, $args );
+
+		/*
+		$e = new \Exception();
+		$trace = $e->getTraceAsString();
+		error_log( print_r( [
+			'method' => __METHOD__,
+			'response' => $response,
+			//'backtrace' => $trace,
+		], true ) );
+		*/
 
 		/*
 		 * Post-request checks.
@@ -214,7 +257,7 @@ class Pledgeball_Client_Remote_API {
 		 *
 		 * We're happy with either.
 		 */
-		$result = $this->post_request( $response, [ 200, 201 ] );
+		$result = $this->post_request( $response, [ 200, 201 ], $this->url . $endpoint, $args );
 
 		// --<
 		return $result;
@@ -259,7 +302,7 @@ class Pledgeball_Client_Remote_API {
 		$response = wp_remote_request( $this->url . $endpoint, $args );
 
 		// Post-request checks.
-		$result = $this->post_request( $response );
+		$result = $this->post_request( $response, [ 200 ], $this->url . $endpoint, $args );
 
 		// --<
 		return $result;
@@ -307,11 +350,42 @@ class Pledgeball_Client_Remote_API {
 		// Pre-request check.
 		$this->pre_request();
 
+		/*
+		$e = new \Exception();
+		$trace = $e->getTraceAsString();
+		error_log( print_r( [
+			'method' => __METHOD__,
+			'url' => $this->url . $endpoint,
+			'args' => $args,
+			//'backtrace' => $trace,
+		], true ) );
+		*/
+
 		// Fire the request.
 		$response = wp_remote_request( $this->url . $endpoint, $args );
 
+		/*
+		$e = new \Exception();
+		$trace = $e->getTraceAsString();
+		error_log( print_r( [
+			'method' => __METHOD__,
+			'response' => $response,
+			//'backtrace' => $trace,
+		], true ) );
+		*/
+
 		// Post-request checks.
-		$result = $this->post_request( $response, [ 200, 201 ] );
+		$result = $this->post_request( $response, [ 200, 201 ], $this->url . $endpoint, $args );
+
+		/*
+		$e = new \Exception();
+		$trace = $e->getTraceAsString();
+		error_log( print_r( [
+			'method' => __METHOD__,
+			'result' => $result,
+			//'backtrace' => $trace,
+		], true ) );
+		*/
 
 		// --<
 		return $result;
@@ -339,9 +413,11 @@ class Pledgeball_Client_Remote_API {
 	 *
 	 * @param mixed $response The request response.
 	 * @param array $success_codes The anticipated success codes. Default 200.
+	 * @param string $url The URL.
+	 * @param array $args The request args.
 	 * @return array|bool $result The response array, or false on failure.
 	 */
-	public function post_request( $response, $success_codes = [ 200 ] ) {
+	public function post_request( $response, $success_codes = [ 200 ], $url = '', $args = [] ) {
 
 		// Reimplement SSL checks.
 		if ( $this->localhost === true ) {
@@ -359,6 +435,8 @@ class Pledgeball_Client_Remote_API {
 				'method' => __METHOD__,
 				'message' => $response->get_error_message(),
 				'response' => $response,
+				'url' => $url,
+				'args' => $args,
 				'backtrace' => $trace,
 			] );
 			return $result;
@@ -372,6 +450,8 @@ class Pledgeball_Client_Remote_API {
 				'method' => __METHOD__,
 				'error' => __( 'Response is not an array.', 'pledgeball-client-side' ),
 				'response' => $response,
+				'url' => $url,
+				'args' => $args,
 				'backtrace' => $trace,
 			] );
 			return $result;
@@ -385,20 +465,26 @@ class Pledgeball_Client_Remote_API {
 				'method' => __METHOD__,
 				'error' => __( 'Request was not successful.', 'pledgeball-client-side' ),
 				'response' => $response,
+				'url' => $url,
+				'args' => $args,
 				'backtrace' => $trace,
 			] );
 			return $result;
 		}
 
 		// Try and format the result.
-		try {
-			$result = json_decode( $response['body'] );
-		} catch ( Exception $ex ) {
+		$result = json_decode( $response['body'], false );
+		if ( JSON_ERROR_NONE !== json_last_error() ) {
+			$e = new \Exception();
+			$trace = $e->getTraceAsString();
 			$this->log_error( [
 				'method' => __METHOD__,
 				'error' => __( 'Failed to decode JSON.', 'pledgeball-client-side' ),
+				'message' => json_last_error_msg(),
 				'response' => $response,
-				'backtrace' => $ex->getTraceAsString(),
+				'url' => $url,
+				'args' => $args,
+				'backtrace' => $trace,
 			] );
 			$result = false;
 		}
