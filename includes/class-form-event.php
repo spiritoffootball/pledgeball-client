@@ -76,7 +76,7 @@ class Pledgeball_Client_Form_Event_Create {
 
 		// Store reference to Plugin object.
 		$this->plugin = $form->plugin;
-		$this->form = $form;
+		$this->form   = $form;
 
 		// Init when this form class is loaded.
 		add_action( 'pledgeball_client/form/init', [ $this, 'initialise' ] );
@@ -127,7 +127,7 @@ class Pledgeball_Client_Form_Event_Create {
 	 * @since 1.0
 	 *
 	 * @param array $attr The saved Shortcode attributes.
-	 * @param str $content The enclosed content of the Shortcode.
+	 * @param str   $content The enclosed content of the Shortcode.
 	 * @return str $markup The HTML markup for the Shortcode.
 	 */
 	public function form_render( $attr, $content = null ) {
@@ -381,8 +381,8 @@ class Pledgeball_Client_Form_Event_Create {
 		// Init localisation.
 		$localisation = [
 			'field_required' => __( 'Please complete the fields marked in red.', 'pledgeball-client' ),
-			'submit' => __( 'Create Event', 'pledgeball-client' ),
-			'submitting' => __( 'Submitting...', 'pledgeball-client' ),
+			'submit'         => __( 'Create Event', 'pledgeball-client' ),
+			'submitting'     => __( 'Submitting...', 'pledgeball-client' ),
 		];
 
 		// Init settings.
@@ -393,7 +393,7 @@ class Pledgeball_Client_Form_Event_Create {
 		// Localisation array.
 		$vars = [
 			'localisation' => $localisation,
-			'settings' => $settings,
+			'settings'     => $settings,
 		];
 
 		// Localise the WordPress way.
@@ -417,7 +417,7 @@ class Pledgeball_Client_Form_Event_Create {
 		// Default response.
 		$data = [
 			'notice' => __( 'Could not submit the Event. Please try again.', 'pledgeball-client' ),
-			'saved' => false,
+			'saved'  => false,
 		];
 
 		// Skip if not AJAX submission.
@@ -427,7 +427,7 @@ class Pledgeball_Client_Form_Event_Create {
 
 		// Since this is an AJAX request, check security.
 		$result = check_ajax_referer( $this->nonce_ajax, false, false );
-		if ( $result === false ) {
+		if ( false === $result ) {
 			$data['notice'] = __( 'Authentication failed. Could not submit the Event.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
@@ -435,7 +435,7 @@ class Pledgeball_Client_Form_Event_Create {
 		// Extract mandatory Email.
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$email_raw = isset( $_POST['email'] ) ? trim( wp_unslash( $_POST['email'] ) ) : '';
-		$email = sanitize_email( $email_raw );
+		$email     = sanitize_email( $email_raw );
 		if ( empty( $email ) || ! is_email( $email ) ) {
 			$data['notice'] = __( 'Please enter a valid Email Address.', 'pledgeball-client' );
 			wp_send_json( $data );
@@ -444,7 +444,7 @@ class Pledgeball_Client_Form_Event_Create {
 		// Extract mandatory Event Title.
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$title_raw = isset( $_POST['title'] ) ? trim( wp_unslash( $_POST['title'] ) ) : '';
-		$title = sanitize_text_field( $title_raw );
+		$title     = sanitize_text_field( $title_raw );
 		if ( empty( $title ) ) {
 			$data['notice'] = __( 'Please enter a valid Event title.', 'pledgeball-client' );
 			wp_send_json( $data );
@@ -453,25 +453,25 @@ class Pledgeball_Client_Form_Event_Create {
 		// Extract "First Name".
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$first_name_raw = isset( $_POST['first_name'] ) ? trim( wp_unslash( $_POST['first_name'] ) ) : '';
-		$first_name = sanitize_text_field( $first_name_raw );
+		$first_name     = sanitize_text_field( $first_name_raw );
 
 		// Extract "Last Name".
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$last_name_raw = isset( $_POST['last_name'] ) ? trim( wp_unslash( $_POST['last_name'] ) ) : '';
-		$last_name = sanitize_text_field( $last_name_raw );
+		$last_name     = sanitize_text_field( $last_name_raw );
 
 		// Extract Phone.
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$phone_raw = isset( $_POST['phone'] ) ? trim( wp_unslash( $_POST['phone'] ) ) : '';
-		$phone = sanitize_text_field( $phone_raw );
+		$phone     = sanitize_text_field( $phone_raw );
 
 		// Let's make an array of submission data.
 		$submission = [
 			'firstname' => $first_name,
-			'lastname' => $last_name,
-			'email' => $email,
-			'phone' => $phone,
-			'title' => $title,
+			'lastname'  => $last_name,
+			'email'     => $email,
+			'phone'     => $phone,
+			'title'     => $title,
 		];
 
 		/*
@@ -499,7 +499,7 @@ class Pledgeball_Client_Form_Event_Create {
 		// Data response.
 		$data = [
 			'message' => __( 'Your Event has been submitted.', 'pledgeball-client' ),
-			'saved' => true,
+			'saved'   => true,
 		];
 
 		// Return the data.
@@ -555,25 +555,25 @@ class Pledgeball_Client_Form_Event_Create {
 		// Extract "First Name".
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$first_name_raw = isset( $_POST['pledgeball_first_name'] ) ? trim( wp_unslash( $_POST['pledgeball_first_name'] ) ) : '';
-		$first_name = sanitize_text_field( $first_name_raw );
+		$first_name     = sanitize_text_field( $first_name_raw );
 
 		// Extract "Last Name".
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$last_name_raw = isset( $_POST['pledgeball_last_name'] ) ? trim( wp_unslash( $_POST['pledgeball_last_name'] ) ) : '';
-		$last_name = sanitize_text_field( $last_name_raw );
+		$last_name     = sanitize_text_field( $last_name_raw );
 
 		// Extract Phone.
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$phone_raw = isset( $_POST['pledgeball_phone'] ) ? trim( wp_unslash( $_POST['pledgeball_phone'] ) ) : '';
-		$phone = sanitize_text_field( $phone_raw );
+		$phone     = sanitize_text_field( $phone_raw );
 
 		// Let's make an array of submission data.
 		$submission = [
 			'firstname' => $first_name,
-			'lastname' => $last_name,
-			'email' => $email,
-			'phone' => $phone,
-			'title' => $title,
+			'lastname'  => $last_name,
+			'email'     => $email,
+			'phone'     => $phone,
+			'title'     => $title,
 		];
 
 		/*

@@ -88,7 +88,7 @@ class Pledgeball_Client {
 
 		// Only do this once.
 		static $done;
-		if ( isset( $done ) && $done === true ) {
+		if ( isset( $done ) && true === $done ) {
 			return;
 		}
 
@@ -148,7 +148,7 @@ class Pledgeball_Client {
 
 		// Initialise objects.
 		$this->remote = new Pledgeball_Client_Remote( $this );
-		$this->form = new Pledgeball_Client_Form( $this );
+		$this->form   = new Pledgeball_Client_Form( $this );
 
 	}
 

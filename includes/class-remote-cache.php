@@ -98,7 +98,7 @@ class Pledgeball_Client_Remote_Cache {
 			$result = $connection->request( $item['endpoint'], $item['body'], $item['method'] );
 
 			// If we've hit an error.
-			if ( $result === false ) {
+			if ( false === $result ) {
 
 				// Restore item to queue.
 				$queue[] = $item;

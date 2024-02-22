@@ -156,7 +156,7 @@ class Pledgeball_Client_Remote {
 		$response = $connection->get( 'wp-json/pledgeapi/v1/pledgelist', $args, true );
 
 		// We do not need caching for this particular method.
-		if ( $response === false ) {
+		if ( false === $response ) {
 			return false;
 		}
 
@@ -195,7 +195,7 @@ class Pledgeball_Client_Remote {
 		$response = $connection->get( 'wp-json/pledgeapi/v1/geteventid', [ 'name' => $name ], true );
 
 		// We do not need caching for this particular method.
-		if ( $response === false ) {
+		if ( false === $response ) {
 			return false;
 		}
 
@@ -242,7 +242,7 @@ class Pledgeball_Client_Remote {
 		$response = $connection->get( 'wp-json/pledgeapi/v1/findevents', [], true );
 
 		// We do not need caching for this particular method.
-		if ( $response === false ) {
+		if ( false === $response ) {
 			return false;
 		}
 
@@ -279,7 +279,7 @@ class Pledgeball_Client_Remote {
 		$response = $connection->get( 'wp-json/pledgeapi/v1/eventdetails', [ 'id' => $event_id ], true );
 
 		// We do not need caching for this particular method.
-		if ( $response === false ) {
+		if ( false === $response ) {
 			return false;
 		}
 
@@ -313,7 +313,7 @@ class Pledgeball_Client_Remote {
 		$response = $connection->get( 'wp-json/pledgeapi/v1/eventdetails', $source, true );
 
 		// We do not need caching for this particular method.
-		if ( $response === false ) {
+		if ( false === $response ) {
 			return false;
 		}
 
@@ -360,20 +360,22 @@ class Pledgeball_Client_Remote {
 		 * However we may not need caching for this particular method. We can
 		 * return an error to the form and ask for it to be re-submitted instead.
 		 */
-		if ( $response === false ) {
+		if ( false === $response ) {
 
 			// Build query.
 			$query = [
-				'action' => 'event_save',
+				'action'   => 'event_save',
 				'endpoint' => 'wp-json/pledgeapi/v1/storeorupdateevent',
-				'body' => $data,
-				'method' => 'POST',
+				'body'     => $data,
+				'method'   => 'POST',
 			];
 
+			/*
 			// Add to cache.
 			// Disabled, but shows how this would be done.
 			// phpcs:ignore Squiz.Commenting.InlineComment.InvalidEndChar
-			//$this->cache->queue_add( $query );
+			$this->cache->queue_add( $query );
+			*/
 
 			// --<
 			return false;
@@ -398,17 +400,19 @@ class Pledgeball_Client_Remote {
 	 *
 	 * @since 1.0
 	 *
-	 * @param array $item The queue item.
+	 * @param array  $item The queue item.
 	 * @param object $result The result of a successful Pledgeball API call.
 	 */
 	public function event_saved( $item, $result ) {
 
 		// Bail if not the action we're after.
-		if ( $item['action'] !== 'event_save' ) {
+		if ( 'event_save' !== $item['action'] ) {
 			return;
 		}
 
+		/*
 		// Maybe do something.
+		*/
 
 	}
 
@@ -442,20 +446,22 @@ class Pledgeball_Client_Remote {
 		 * However we may not need caching for this particular method. We can
 		 * return an error to the form and ask for it to be re-submitted instead.
 		 */
-		if ( $response === false ) {
+		if ( false === $response ) {
 
 			// Build query.
 			$query = [
-				'action' => 'event_delete',
+				'action'   => 'event_delete',
 				'endpoint' => 'wp-json/pledgeapi/v1/storeorupdateevent',
-				'body' => [ 'id' => $event_id ],
-				'method' => 'POST',
+				'body'     => [ 'id' => $event_id ],
+				'method'   => 'POST',
 			];
 
+			/*
 			// Add to cache.
 			// Disabled, but shows how this would be done.
 			// phpcs:ignore Squiz.Commenting.InlineComment.InvalidEndChar
-			//$this->cache->queue_add( $query );
+			$this->cache->queue_add( $query );
+			*/
 
 			// --<
 			return false;
@@ -472,17 +478,19 @@ class Pledgeball_Client_Remote {
 	 *
 	 * @since 1.0
 	 *
-	 * @param array $item The queue item.
+	 * @param array  $item The queue item.
 	 * @param object $result The result of a successful Pledgeball API call.
 	 */
 	public function event_deleted( $item, $result ) {
 
 		// Bail if not the action we're after.
-		if ( $item['action'] !== 'event_delete' ) {
+		if ( 'event_delete' !== $item['action'] ) {
 			return;
 		}
 
+		/*
 		// Maybe do something.
+		*/
 
 	}
 
@@ -505,7 +513,7 @@ class Pledgeball_Client_Remote {
 		$response = $connection->post( 'wp-json/pledgeapi/v1/storepledges', $data, [], true );
 
 		// We do not need caching for this particular method.
-		if ( $response === false ) {
+		if ( false === $response ) {
 			// Trigger failure and form notice.
 			return false;
 		}
@@ -547,20 +555,22 @@ class Pledgeball_Client_Remote {
 		 * However we may not need caching for this particular method. We can
 		 * return an error to the form and ask for it to be re-submitted instead.
 		 */
-		if ( $response === false ) {
+		if ( false === $response ) {
 
 			// Build query.
 			$query = [
-				'action' => 'pledges_save',
+				'action'   => 'pledges_save',
 				'endpoint' => 'wp-json/pledgeapi/v1/storepledges',
-				'body' => $data,
-				'method' => 'POST',
+				'body'     => $data,
+				'method'   => 'POST',
 			];
 
+			/*
 			// Add to cache.
 			// Disabled, but shows how this would be done.
 			// phpcs:ignore Squiz.Commenting.InlineComment.InvalidEndChar
-			//$this->cache->queue_add( $query );
+			$this->cache->queue_add( $query );
+			*/
 
 			// --<
 			return false;
@@ -577,17 +587,19 @@ class Pledgeball_Client_Remote {
 	 *
 	 * @since 1.0
 	 *
-	 * @param array $item The queue item.
+	 * @param array  $item The queue item.
 	 * @param object $result The result of a successful Pledgeball API call.
 	 */
 	public function pledges_saved( $item, $result ) {
 
 		// Bail if not the action we're after.
-		if ( $item['action'] !== 'pledges_save' ) {
+		if ( 'pledges_save' !== $item['action'] ) {
 			return;
 		}
 
+		/*
 		// Maybe do something.
+		*/
 
 	}
 

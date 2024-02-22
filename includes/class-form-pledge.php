@@ -76,7 +76,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 
 		// Store reference to Plugin object.
 		$this->plugin = $form->plugin;
-		$this->form = $form;
+		$this->form   = $form;
 
 		// Init when this form class is loaded.
 		add_action( 'pledgeball_client/form/init', [ $this, 'initialise' ] );
@@ -127,7 +127,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 	 * @since 1.0
 	 *
 	 * @param array $attr The saved Shortcode attributes.
-	 * @param str $content The enclosed content of the Shortcode.
+	 * @param str   $content The enclosed content of the Shortcode.
 	 * @return str $markup The HTML markup for the Shortcode.
 	 */
 	public function form_render( $attr, $content = null ) {
@@ -153,11 +153,11 @@ class Pledgeball_Client_Form_Pledge_Submit {
 			$label = '<label for="pledgeball_id_' . esc_attr( $pledge->Number ) . '">' . esc_html( $pledge->Description ) . '</label>';
 
 			$saving = '';
-			if ( ! empty( $pledge->KgCO2e ) && $pledge->KgCO2e != '-1' ) {
+			if ( ! empty( $pledge->KgCO2e ) && '-1' !== $pledge->KgCO2e ) {
 				/* translators: %s The number of kilogrammes. */
 				$saving = ' <span>' . sprintf( __( 'Saves %s kg of CO<sub>2</sub>e per year.', 'pledgeball-client' ), esc_html( $pledge->KgCO2e ) ) . '</span>';
 			}
-			if ( ! empty( $pledge->KgCO2e ) && $pledge->KgCO2e == '-1' ) {
+			if ( ! empty( $pledge->KgCO2e ) && '-1' === $pledge->KgCO2e ) {
 				$saving = ' <span>' . __( 'Saves CO<sub>2</sub>e but hard to quantify.', 'pledgeball-client' ) . '</span>';
 			}
 
@@ -178,7 +178,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		ksort( $build );
 
 		// Define Consent text.
-		$consent = esc_html__( 'I consent to my details being stored by PledgeBall (required)', 'pledgeball-client' );
+		$consent = __( 'I consent to my details being stored by PledgeBall (required)', 'pledgeball-client' );
 
 		/**
 		 * Allow "Consent" text to be filtered.
@@ -190,7 +190,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		$consent = apply_filters( 'pledgeball_client/form/pledge_submit/consent_text', $consent );
 
 		// Define Updates text.
-		$updates = esc_html__( 'Tick to receive occasional updates about the impact of you and your fellow Pledgeballers (and if you like freebies). NB please tick even if you have already subscribed otherwise you will be unsubscribed.', 'pledgeball-client' );
+		$updates = __( 'Tick to receive occasional updates about the impact of you and your fellow Pledgeballers (and if you like freebies). NB please tick even if you have already subscribed otherwise you will be unsubscribed.', 'pledgeball-client' );
 
 		/**
 		 * Allow "Updates" text to be filtered.
@@ -451,22 +451,22 @@ class Pledgeball_Client_Form_Pledge_Submit {
 
 		// Init localisation.
 		$localisation = [
-			'field_required' => __( 'Please complete the fields marked in red.', 'pledgeball-client' ),
+			'field_required'  => __( 'Please complete the fields marked in red.', 'pledgeball-client' ),
 			'pledge_required' => __( 'Please choose at least one Pledge.', 'pledgeball-client' ),
-			'submit' => __( 'Submit Pledge', 'pledgeball-client' ),
-			'submitting' => __( 'Submitting...', 'pledgeball-client' ),
+			'submit'          => __( 'Submit Pledge', 'pledgeball-client' ),
+			'submitting'      => __( 'Submitting...', 'pledgeball-client' ),
 		];
 
 		// Init settings.
 		$settings = [
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'pledges' => $pledges,
+			'pledges'  => $pledges,
 		];
 
 		// Localisation array.
 		$vars = [
 			'localisation' => $localisation,
-			'settings' => $settings,
+			'settings'     => $settings,
 		];
 
 		// Localise the WordPress way.
@@ -490,7 +490,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		// Default response.
 		$data = [
 			'notice' => __( 'Could not submit the Pledge. Please try again.', 'pledgeball-client' ),
-			'saved' => false,
+			'saved'  => false,
 		];
 
 		// Skip if not AJAX submission.
@@ -500,7 +500,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 
 		// Since this is an AJAX request, check security.
 		$result = check_ajax_referer( $this->nonce_ajax, false, false );
-		if ( $result === false ) {
+		if ( false === $result ) {
 			$data['notice'] = __( 'Authentication failed. Could not submit the Pledge.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
@@ -508,7 +508,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		// Extract "First Name".
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$first_name_raw = isset( $_POST['first_name'] ) ? trim( wp_unslash( $_POST['first_name'] ) ) : '';
-		$first_name = sanitize_text_field( $first_name_raw );
+		$first_name     = sanitize_text_field( $first_name_raw );
 		if ( empty( $first_name ) ) {
 			$data['notice'] = __( 'Please enter a First Name.', 'pledgeball-client' );
 			wp_send_json( $data );
@@ -517,7 +517,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		// Extract "Last Name".
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$last_name_raw = isset( $_POST['last_name'] ) ? trim( wp_unslash( $_POST['last_name'] ) ) : '';
-		$last_name = sanitize_text_field( $last_name_raw );
+		$last_name     = sanitize_text_field( $last_name_raw );
 		if ( empty( $last_name ) ) {
 			$data['notice'] = __( 'Please enter a Last Name.', 'pledgeball-client' );
 			wp_send_json( $data );
@@ -526,7 +526,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		// Extract Email.
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$email_raw = isset( $_POST['email'] ) ? trim( wp_unslash( $_POST['email'] ) ) : '';
-		$email = sanitize_email( $email_raw );
+		$email     = sanitize_email( $email_raw );
 		if ( empty( $email ) || ! is_email( $email ) ) {
 			$data['notice'] = __( 'Please enter a valid Email Address.', 'pledgeball-client' );
 			wp_send_json( $data );
@@ -535,9 +535,12 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		// Extract Pledge IDs.
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$pledge_ids = isset( $_POST['pledge_ids'] ) ? stripslashes_deep( $_POST['pledge_ids'] ) : [];
-		array_walk( $pledge_ids, function( &$item ) {
-			$item = (int) trim( $item );
-		} );
+		array_walk(
+			$pledge_ids,
+			function( &$item ) {
+				$item = (int) trim( $item );
+			}
+		);
 		if ( empty( $pledge_ids ) ) {
 			$data['notice'] = __( 'Please choose at least one Pledge.', 'pledgeball-client' );
 			wp_send_json( $data );
@@ -548,11 +551,11 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		if ( isset( $_POST['consent'] ) ) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$consent_raw = wp_unslash( $_POST['consent'] );
-			if ( $consent_raw === 'true' ) {
+			if ( 'true' === $consent_raw ) {
 				$consent = true;
 			}
 		}
-		if ( $consent === false ) {
+		if ( false === $consent ) {
 			$data['notice'] = __( 'Cannot submit your Pledge unless you consent to us storing your data.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
@@ -562,7 +565,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		if ( isset( $_POST['okemails'] ) ) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$okemails_raw = wp_unslash( $_POST['okemails'] );
-			if ( $okemails_raw === 'true' ) {
+			if ( 'true' === $okemails_raw ) {
 				$okemails = 1;
 			}
 		}
@@ -572,7 +575,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		if ( isset( $_POST['other'] ) ) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$other_raw = trim( wp_unslash( $_POST['other'] ) );
-			$other = sanitize_text_field( $other_raw );
+			$other     = sanitize_text_field( $other_raw );
 		}
 
 		// Let's format the Pledges properly.
@@ -580,23 +583,23 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		foreach ( $pledge_ids as $pledge_id ) {
 			// Maybe apply the "Other" value.
 			$other_value = '';
-			if ( $pledge_id === 66 ) {
+			if ( 66 === $pledge_id ) {
 				$other_value = $other;
 			}
 			// Apply formatting.
 			$pledges[] = [
 				'pledgenumber' => $pledge_id,
-				'other' => $other_value,
+				'other'        => $other_value,
 			];
 		}
 
 		// Let's make an array of submission data.
 		$submission = [
 			'firstname' => $first_name,
-			'lastname' => $last_name,
-			'email' => $email,
-			'pledges' => $pledges,
-			'okemails' => $okemails,
+			'lastname'  => $last_name,
+			'email'     => $email,
+			'pledges'   => $pledges,
+			'okemails'  => $okemails,
 		];
 
 		/*
@@ -625,7 +628,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		// Data response.
 		$data = [
 			'message' => __( 'Your Pledge has been submitted. Thanks for taking part!', 'pledgeball-client' ),
-			'saved' => true,
+			'saved'   => true,
 		];
 
 		// Return the data.
@@ -659,7 +662,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		// Extract "First Name".
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$first_name_raw = isset( $_POST['pledgeball_first_name'] ) ? trim( wp_unslash( $_POST['pledgeball_first_name'] ) ) : '';
-		$first_name = sanitize_text_field( $first_name_raw );
+		$first_name     = sanitize_text_field( $first_name_raw );
 		if ( empty( $first_name ) ) {
 			$this->form_redirect( [ 'error' => 'no-first-name' ] );
 		}
@@ -667,7 +670,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		// Extract "Last Name".
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$last_name_raw = isset( $_POST['pledgeball_last_name'] ) ? trim( wp_unslash( $_POST['pledgeball_last_name'] ) ) : '';
-		$last_name = sanitize_text_field( $last_name_raw );
+		$last_name     = sanitize_text_field( $last_name_raw );
 		if ( empty( $last_name ) ) {
 			$this->form_redirect( [ 'error' => 'no-last-name' ] );
 		}
@@ -675,7 +678,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		// Extract Email.
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$email_raw = isset( $_POST['pledgeball_email'] ) ? trim( wp_unslash( $_POST['pledgeball_email'] ) ) : '';
-		$email = sanitize_email( $email_raw );
+		$email     = sanitize_email( $email_raw );
 		if ( empty( $email ) ) {
 			$this->form_redirect( [ 'error' => 'no-email' ] );
 		}
@@ -686,20 +689,23 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		if ( empty( $pledge_ids ) ) {
 			$this->form_redirect( [ 'error' => 'no-pledges' ] );
 		}
-		array_walk( $pledge_ids, function( &$item ) {
-			$item = (int) trim( $item );
-		} );
+		array_walk(
+			$pledge_ids,
+			function( &$item ) {
+				$item = (int) trim( $item );
+			}
+		);
 
 		// Extract Consent.
 		$consent = false;
 		if ( isset( $_POST['pledgeball_consent'] ) ) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$consent_raw = (int) wp_unslash( $_POST['pledgeball_consent'] );
-			if ( $consent_raw === 1 ) {
+			if ( 1 === $consent_raw ) {
 				$consent = true;
 			}
 		}
-		if ( $consent === false ) {
+		if ( false === $consent ) {
 			$this->form_redirect( [ 'error' => 'no-consent' ] );
 		}
 
@@ -718,7 +724,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		if ( isset( $_POST['pledgeball_other'] ) ) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$other_raw = trim( wp_unslash( $_POST['pledgeball_other'] ) );
-			$other = sanitize_text_field( $other_raw );
+			$other     = sanitize_text_field( $other_raw );
 		}
 
 		// Let's format the Pledges properly.
@@ -726,24 +732,24 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		foreach ( $pledge_ids as $pledge_id ) {
 			// Maybe apply the "Other" value.
 			$other_value = '';
-			if ( $pledge_id === 66 ) {
+			if ( 66 === $pledge_id ) {
 				$other_value = $other;
 			}
 			// Apply formatting.
 			$pledges[] = [
 				'pledgenumber' => $pledge_id,
-				'other' => $other_value,
+				'other'        => $other_value,
 			];
 		}
 
 		// Let's make an array of submission data.
 		$submission = [
 			'firstname' => $first_name,
-			'lastname' => $last_name,
-			'email' => $email,
-			'pledges' => $pledges,
-			'consent' => $consent,
-			'okemails' => $okemails,
+			'lastname'  => $last_name,
+			'email'     => $email,
+			'pledges'   => $pledges,
+			'consent'   => $consent,
+			'okemails'  => $okemails,
 		];
 
 		/*

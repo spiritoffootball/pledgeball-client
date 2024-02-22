@@ -107,7 +107,7 @@ class Pledgeball_Client_Form {
 
 		// Init objects.
 		$this->pledge_submit = new Pledgeball_Client_Form_Pledge_Submit( $this );
-		$this->event_create = new Pledgeball_Client_Form_Event_Create( $this );
+		$this->event_create  = new Pledgeball_Client_Form_Event_Create( $this );
 
 	}
 

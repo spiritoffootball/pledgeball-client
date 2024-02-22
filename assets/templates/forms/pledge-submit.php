@@ -41,12 +41,14 @@ defined( 'ABSPATH' ) || exit;
 			<p><?php esc_html_e( 'Thank you for supporting PledgeBall and helping the planet!', 'pledgeball-client' ); ?></p>
 			<div class="pledgeball_pledges">
 				<?php foreach ( $build as $heading => $items ) : ?>
+					<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
 					<h5><?php echo $heading; ?></h5>
 					<ul>
 						<?php foreach ( $items as $item ) : ?>
 							<li>
+								<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
 								<?php echo $item; ?>
-								<?php if ( $heading === 'Other' ) : ?>
+								<?php if ( 'Other' === $heading ) : ?>
 									<br><input type="text" class="pledgeball_main_input pledgeball_other_input" name="pledgeball_other" id="pledgeball_other" value="">
 								<?php endif; ?>
 							</li>
@@ -60,11 +62,11 @@ defined( 'ABSPATH' ) || exit;
 			<h4><?php esc_html_e( 'Almost There', 'pledgeball-client' ); ?></h4>
 			<p>
 				<input type="checkbox" class="pledge_submit_consent" name="pledgeball_consent" id="pledgeball_consent" value="1">
-				<label for="pledgeball_consent"><?php echo $consent; ?></label>
+				<label for="pledgeball_consent"><?php echo esc_html( $consent ); ?></label>
 			</p>
 			<p class="pledgeball_updates">
 				<input type="checkbox" class="pledge_submit_consent" name="pledgeball_updates" id="pledgeball_updates" value="1">
-				<label for="pledgeball_updates"><?php echo $updates; ?></label>
+				<label for="pledgeball_updates"><?php echo esc_html( $updates ); ?></label>
 			</p>
 		</fieldset>
 
