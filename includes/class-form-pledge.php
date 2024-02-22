@@ -140,8 +140,8 @@ class Pledgeball_Client_Form_Pledge_Submit {
 
 		// Bail if we didn't get any results.
 		if ( empty( $pledges ) ) {
-			$markup .= '<h3>' . __( 'Submit a Standalone Pledge', 'pledgeball-client-side' ) . '</h3>' . "\n";
-			$markup .= '<p>' . __( 'Sorry, something went wrong. Please reload and try again.', 'pledgeball-client-side' ) . '</p>' . "\n";
+			$markup .= '<h3>' . __( 'Submit a Standalone Pledge', 'pledgeball-client' ) . '</h3>' . "\n";
+			$markup .= '<p>' . __( 'Sorry, something went wrong. Please reload and try again.', 'pledgeball-client' ) . '</p>' . "\n";
 			return $markup;
 		}
 
@@ -155,15 +155,15 @@ class Pledgeball_Client_Form_Pledge_Submit {
 			$saving = '';
 			if ( ! empty( $pledge->KgCO2e ) && $pledge->KgCO2e != '-1' ) {
 				/* translators: %s The number of kilogrammes. */
-				$saving = ' <span>' . sprintf( __( 'Saves %s kg of CO<sub>2</sub>e per year.', 'pledgeball-client-side' ), esc_html( $pledge->KgCO2e ) ) . '</span>';
+				$saving = ' <span>' . sprintf( __( 'Saves %s kg of CO<sub>2</sub>e per year.', 'pledgeball-client' ), esc_html( $pledge->KgCO2e ) ) . '</span>';
 			}
 			if ( ! empty( $pledge->KgCO2e ) && $pledge->KgCO2e == '-1' ) {
-				$saving = ' <span>' . __( 'Saves CO<sub>2</sub>e but hard to quantify.', 'pledgeball-client-side' ) . '</span>';
+				$saving = ' <span>' . __( 'Saves CO<sub>2</sub>e but hard to quantify.', 'pledgeball-client' ) . '</span>';
 			}
 
 			$context = '';
 			if ( ! empty( $pledge->UsefulURL ) ) {
-				$context = ' <span>(<a href="' . esc_url( $pledge->UsefulURL ) . '" target="_blank">' . __( 'More information', 'pledgeball-client-side' ) . ')</a></span>';
+				$context = ' <span>(<a href="' . esc_url( $pledge->UsefulURL ) . '" target="_blank">' . __( 'More information', 'pledgeball-client' ) . ')</a></span>';
 			}
 
 			$divider = '';
@@ -178,7 +178,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		ksort( $build );
 
 		// Define Consent text.
-		$consent = esc_html__( 'I consent to my details being stored by PledgeBall (required)', 'pledgeball-client-side' );
+		$consent = esc_html__( 'I consent to my details being stored by PledgeBall (required)', 'pledgeball-client' );
 
 		/**
 		 * Allow "Consent" text to be filtered.
@@ -190,7 +190,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		$consent = apply_filters( 'pledgeball_client/form/pledge_submit/consent_text', $consent );
 
 		// Define Updates text.
-		$updates = esc_html__( 'Tick to receive occasional updates about the impact of you and your fellow Pledgeballers (and if you like freebies). NB please tick even if you have already subscribed otherwise you will be unsubscribed.', 'pledgeball-client-side' );
+		$updates = esc_html__( 'Tick to receive occasional updates about the impact of you and your fellow Pledgeballers (and if you like freebies). NB please tick even if you have already subscribed otherwise you will be unsubscribed.', 'pledgeball-client' );
 
 		/**
 		 * Allow "Updates" text to be filtered.
@@ -451,10 +451,10 @@ class Pledgeball_Client_Form_Pledge_Submit {
 
 		// Init localisation.
 		$localisation = [
-			'field_required' => __( 'Please complete the fields marked in red.', 'pledgeball-client-side' ),
-			'pledge_required' => __( 'Please choose at least one Pledge.', 'pledgeball-client-side' ),
-			'submit' => __( 'Submit Pledge', 'pledgeball-client-side' ),
-			'submitting' => __( 'Submitting...', 'pledgeball-client-side' ),
+			'field_required' => __( 'Please complete the fields marked in red.', 'pledgeball-client' ),
+			'pledge_required' => __( 'Please choose at least one Pledge.', 'pledgeball-client' ),
+			'submit' => __( 'Submit Pledge', 'pledgeball-client' ),
+			'submitting' => __( 'Submitting...', 'pledgeball-client' ),
 		];
 
 		// Init settings.
@@ -489,7 +489,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 
 		// Default response.
 		$data = [
-			'notice' => __( 'Could not submit the Pledge. Please try again.', 'pledgeball-client-side' ),
+			'notice' => __( 'Could not submit the Pledge. Please try again.', 'pledgeball-client' ),
 			'saved' => false,
 		];
 
@@ -501,7 +501,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		// Since this is an AJAX request, check security.
 		$result = check_ajax_referer( $this->nonce_ajax, false, false );
 		if ( $result === false ) {
-			$data['notice'] = __( 'Authentication failed. Could not submit the Pledge.', 'pledgeball-client-side' );
+			$data['notice'] = __( 'Authentication failed. Could not submit the Pledge.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
 
@@ -510,7 +510,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		$first_name_raw = isset( $_POST['first_name'] ) ? trim( wp_unslash( $_POST['first_name'] ) ) : '';
 		$first_name = sanitize_text_field( $first_name_raw );
 		if ( empty( $first_name ) ) {
-			$data['notice'] = __( 'Please enter a First Name.', 'pledgeball-client-side' );
+			$data['notice'] = __( 'Please enter a First Name.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
 
@@ -519,7 +519,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		$last_name_raw = isset( $_POST['last_name'] ) ? trim( wp_unslash( $_POST['last_name'] ) ) : '';
 		$last_name = sanitize_text_field( $last_name_raw );
 		if ( empty( $last_name ) ) {
-			$data['notice'] = __( 'Please enter a Last Name.', 'pledgeball-client-side' );
+			$data['notice'] = __( 'Please enter a Last Name.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
 
@@ -528,7 +528,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 		$email_raw = isset( $_POST['email'] ) ? trim( wp_unslash( $_POST['email'] ) ) : '';
 		$email = sanitize_email( $email_raw );
 		if ( empty( $email ) || ! is_email( $email ) ) {
-			$data['notice'] = __( 'Please enter a valid Email Address.', 'pledgeball-client-side' );
+			$data['notice'] = __( 'Please enter a valid Email Address.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
 
@@ -539,7 +539,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 			$item = (int) trim( $item );
 		} );
 		if ( empty( $pledge_ids ) ) {
-			$data['notice'] = __( 'Please choose at least one Pledge.', 'pledgeball-client-side' );
+			$data['notice'] = __( 'Please choose at least one Pledge.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
 
@@ -553,7 +553,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 			}
 		}
 		if ( $consent === false ) {
-			$data['notice'] = __( 'Cannot submit your Pledge unless you consent to us storing your data.', 'pledgeball-client-side' );
+			$data['notice'] = __( 'Cannot submit your Pledge unless you consent to us storing your data.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
 
@@ -624,7 +624,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 
 		// Data response.
 		$data = [
-			'message' => __( 'Your Pledge has been submitted. Thanks for taking part!', 'pledgeball-client-side' ),
+			'message' => __( 'Your Pledge has been submitted. Thanks for taking part!', 'pledgeball-client' ),
 			'saved' => true,
 		];
 

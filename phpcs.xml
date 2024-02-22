@@ -54,7 +54,7 @@
 
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="text_domain" type="array" value="pledgeball-client-side" />
+			<property name="text_domain" type="array" value="pledgeball-client" />
 		</properties>
 	</rule>
 

@@ -380,9 +380,9 @@ class Pledgeball_Client_Form_Event_Create {
 
 		// Init localisation.
 		$localisation = [
-			'field_required' => __( 'Please complete the fields marked in red.', 'pledgeball-client-side' ),
-			'submit' => __( 'Create Event', 'pledgeball-client-side' ),
-			'submitting' => __( 'Submitting...', 'pledgeball-client-side' ),
+			'field_required' => __( 'Please complete the fields marked in red.', 'pledgeball-client' ),
+			'submit' => __( 'Create Event', 'pledgeball-client' ),
+			'submitting' => __( 'Submitting...', 'pledgeball-client' ),
 		];
 
 		// Init settings.
@@ -416,7 +416,7 @@ class Pledgeball_Client_Form_Event_Create {
 
 		// Default response.
 		$data = [
-			'notice' => __( 'Could not submit the Event. Please try again.', 'pledgeball-client-side' ),
+			'notice' => __( 'Could not submit the Event. Please try again.', 'pledgeball-client' ),
 			'saved' => false,
 		];
 
@@ -428,7 +428,7 @@ class Pledgeball_Client_Form_Event_Create {
 		// Since this is an AJAX request, check security.
 		$result = check_ajax_referer( $this->nonce_ajax, false, false );
 		if ( $result === false ) {
-			$data['notice'] = __( 'Authentication failed. Could not submit the Event.', 'pledgeball-client-side' );
+			$data['notice'] = __( 'Authentication failed. Could not submit the Event.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
 
@@ -437,7 +437,7 @@ class Pledgeball_Client_Form_Event_Create {
 		$email_raw = isset( $_POST['email'] ) ? trim( wp_unslash( $_POST['email'] ) ) : '';
 		$email = sanitize_email( $email_raw );
 		if ( empty( $email ) || ! is_email( $email ) ) {
-			$data['notice'] = __( 'Please enter a valid Email Address.', 'pledgeball-client-side' );
+			$data['notice'] = __( 'Please enter a valid Email Address.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
 
@@ -446,7 +446,7 @@ class Pledgeball_Client_Form_Event_Create {
 		$title_raw = isset( $_POST['title'] ) ? trim( wp_unslash( $_POST['title'] ) ) : '';
 		$title = sanitize_text_field( $title_raw );
 		if ( empty( $title ) ) {
-			$data['notice'] = __( 'Please enter a valid Event title.', 'pledgeball-client-side' );
+			$data['notice'] = __( 'Please enter a valid Event title.', 'pledgeball-client' );
 			wp_send_json( $data );
 		}
 
@@ -498,7 +498,7 @@ class Pledgeball_Client_Form_Event_Create {
 
 		// Data response.
 		$data = [
-			'message' => __( 'Your Event has been submitted.', 'pledgeball-client-side' ),
+			'message' => __( 'Your Event has been submitted.', 'pledgeball-client' ),
 			'saved' => true,
 		];
 

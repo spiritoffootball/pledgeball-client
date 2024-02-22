@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: Pledgeball Client
- * Plugin URI: https://github.com/pledgeball/pledgeball-client-side
- * GitHub Plugin URI: https://github.com/pledgeball/pledgeball-client-side
+ * Plugin URI: https://github.com/spiritoffootball/pledgeball-client
+ * GitHub Plugin URI: https://github.com/spiritoffootball/pledgeball-client
  * Description: Enables access to the Pledgeball API.
  * Author: Christian Wach
  * Version: 1.0a
  * Author URI: https://theball.tv
- * Text Domain: pledgeball-client-side
+ * Text Domain: pledgeball-client
  * Domain Path: /languages
  *
  * @package Pledgeball_Client
@@ -123,7 +123,7 @@ class Pledgeball_Client {
 		// Load translations.
 		// phpcs:ignore WordPress.WP.DeprecatedParameters.Load_plugin_textdomainParam2Found
 		load_plugin_textdomain(
-			'pledgeball-client-side', // Unique name.
+			'pledgeball-client', // Unique name.
 			false, // Deprecated argument.
 			dirname( plugin_basename( PLEDGEBALL_CLIENT_FILE ) ) . '/languages/' // Relative path to files.
 		);

@@ -14,7 +14,7 @@ There are two ways to install from GitHub:
 
 If you have downloaded this plugin as a ZIP file from the GitHub repository, do the following to install the plugin:
 
-1. Unzip the .zip file and, if needed, rename the enclosing folder so that the plugin's files are located directly inside `/wp-content/plugins/pledgeball-client-side`
+1. Unzip the .zip file and, if needed, rename the enclosing folder so that the plugin's files are located directly inside `/wp-content/plugins/pledgeball-client`
 2. Activate the plugin.
 3. You're done.
 
@@ -35,11 +35,11 @@ When these have been set up, add the following to `wp-config.php` or similar on 
 /**
  * Pledgeball URL and credentials.
  *
- * @see https://github.com/pledgeball/pledgeball-client-side
+ * @see https://github.com/spiritoffootball/pledgeball-client
  */
 define( 'PLEDGEBALL_URL', 'https://pledgeball.com' );
 define( 'PLEDGEBALL_USER', 'sofusername' );
-define( 'PLEDGEBALL_PWD', 'nB0X 76eZ czKK QLt9 TVPI ZgEu' );
+define( 'PLEDGEBALL_PWD', 'your app pwd here' );
 
 // Add this if your API host is on locahost - bypasses SSL checks.
 define( 'PLEDGEBALL_HOST', 'localhost' );

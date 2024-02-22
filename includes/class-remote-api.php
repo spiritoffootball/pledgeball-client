@@ -448,7 +448,7 @@ class Pledgeball_Client_Remote_API {
 			$trace = $e->getTraceAsString();
 			$this->log_error( [
 				'method' => __METHOD__,
-				'error' => __( 'Response is not an array.', 'pledgeball-client-side' ),
+				'error' => __( 'Response is not an array.', 'pledgeball-client' ),
 				'response' => $response,
 				'url' => $url,
 				'args' => $args,
@@ -463,7 +463,7 @@ class Pledgeball_Client_Remote_API {
 			$trace = $e->getTraceAsString();
 			$this->log_error( [
 				'method' => __METHOD__,
-				'error' => __( 'Request was not successful.', 'pledgeball-client-side' ),
+				'error' => __( 'Request was not successful.', 'pledgeball-client' ),
 				'response' => $response,
 				'url' => $url,
 				'args' => $args,
@@ -479,7 +479,7 @@ class Pledgeball_Client_Remote_API {
 			$trace = $e->getTraceAsString();
 			$this->log_error( [
 				'method' => __METHOD__,
-				'error' => __( 'Failed to decode JSON.', 'pledgeball-client-side' ),
+				'error' => __( 'Failed to decode JSON.', 'pledgeball-client' ),
 				'message' => json_last_error_msg(),
 				'response' => $response,
 				'url' => $url,
