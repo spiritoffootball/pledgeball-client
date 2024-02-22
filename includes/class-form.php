@@ -25,7 +25,7 @@ class Pledgeball_Client_Form {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var object $plugin The Plugin object.
+	 * @var Pledgeball_Client
 	 */
 	public $plugin;
 
@@ -34,7 +34,7 @@ class Pledgeball_Client_Form {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var object $pledge_submit The "Submit Pledge" Form object.
+	 * @var Pledgeball_Client_Form_Pledge_Submit
 	 */
 	public $pledge_submit;
 
@@ -43,7 +43,7 @@ class Pledgeball_Client_Form {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var object $event_create The "Create Event" Form object.
+	 * @var Pledgeball_Client_Form_Event_Create
 	 */
 	public $event_create;
 

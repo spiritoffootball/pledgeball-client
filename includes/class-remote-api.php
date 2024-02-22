@@ -25,7 +25,7 @@ class Pledgeball_Client_Remote_API {
 	 *
 	 * @since 1.0
 	 * @access protected
-	 * @var string $url The API Base URL.
+	 * @var string
 	 */
 	protected $url;
 
@@ -34,7 +34,7 @@ class Pledgeball_Client_Remote_API {
 	 *
 	 * @since 1.0
 	 * @access protected
-	 * @var string $username The API Username.
+	 * @var string
 	 */
 	protected $username;
 
@@ -43,7 +43,7 @@ class Pledgeball_Client_Remote_API {
 	 *
 	 * @since 1.0
 	 * @access protected
-	 * @var string $app_pwd The API Application Password.
+	 * @var string
 	 */
 	protected $app_pwd;
 
@@ -52,7 +52,7 @@ class Pledgeball_Client_Remote_API {
 	 *
 	 * @since 1.0
 	 * @access protected
-	 * @var string $localhost True if calling a localhost site.
+	 * @var bool
 	 */
 	protected $localhost = false;
 

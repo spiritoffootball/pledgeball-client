@@ -27,7 +27,7 @@ class Pledgeball_Client_Remote_Cache {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var str $query_cache_key The Query Cache key.
+	 * @var string
 	 */
 	public $query_cache_key = '_pledgeball_remote_query_cache';
 

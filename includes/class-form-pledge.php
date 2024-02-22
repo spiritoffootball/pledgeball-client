@@ -25,7 +25,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var object $plugin The Plugin object.
+	 * @var Pledgeball_Client
 	 */
 	public $plugin;
 
@@ -34,7 +34,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var object $form The Form object.
+	 * @var Pledgeball_Client_Form
 	 */
 	public $form;
 
@@ -43,7 +43,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 	 *
 	 * @since 1.0
 	 * @access private
-	 * @var string $nonce_action The Nonce action.
+	 * @var string
 	 */
 	private $nonce_action = 'pledge_submit_action';
 
@@ -52,7 +52,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 	 *
 	 * @since 1.0
 	 * @access private
-	 * @var string $nonce_name The Nonce name.
+	 * @var string
 	 */
 	private $nonce_name = 'pledge_submit_nonce';
 
@@ -61,7 +61,7 @@ class Pledgeball_Client_Form_Pledge_Submit {
 	 *
 	 * @since 1.0
 	 * @access private
-	 * @var string $nonce_ajax The Nonce name.
+	 * @var string
 	 */
 	private $nonce_ajax = 'pledge_submit_ajax';
 

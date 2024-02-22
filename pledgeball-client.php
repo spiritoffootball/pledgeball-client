@@ -17,8 +17,6 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-
-
 // Set plugin version here.
 define( 'PLEDGEBALL_CLIENT_VERSION', '1.0a' );
 
@@ -42,8 +40,6 @@ if ( ! defined( 'PLEDGEBALL_CLIENT_DEBUG' ) ) {
 	define( 'PLEDGEBALL_CLIENT_DEBUG', false );
 }
 
-
-
 /**
  * Pledgeball Client Class.
  *
@@ -58,7 +54,7 @@ class Pledgeball_Client {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var object $remote The Pledgeball Remote API object.
+	 * @var Pledgeball_Client_Remote
 	 */
 	public $remote;
 
@@ -67,7 +63,7 @@ class Pledgeball_Client {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var object $form The Pledgeball Form object.
+	 * @var Pledgeball_Client_Form
 	 */
 	public $form;
 

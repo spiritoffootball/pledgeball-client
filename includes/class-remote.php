@@ -25,7 +25,7 @@ class Pledgeball_Client_Remote {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var object $plugin The Plugin object.
+	 * @var Pledgeball_Client
 	 */
 	public $plugin;
 
@@ -34,7 +34,7 @@ class Pledgeball_Client_Remote {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var object $cache The API Cache object.
+	 * @var Pledgeball_Client_Remote_Cache
 	 */
 	public $cache;
 
@@ -45,7 +45,7 @@ class Pledgeball_Client_Remote {
 	 *
 	 * @since 1.0
 	 * @access public
-	 * @var str $meta_key The Transient key.
+	 * @var string
 	 */
 	public $transient_key = 'pledgeball_remote_data_lists';
 
