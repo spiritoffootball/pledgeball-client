@@ -1,17 +1,22 @@
 <?php
 /**
- * Plugin Name: Pledgeball Client
- * Plugin URI: https://github.com/spiritoffootball/pledgeball-client
+ * Pledgeball Client
+ *
+ * Plugin Name:       Pledgeball Client
+ * Description:       Enables access to the Pledgeball API.
+ * Version:           1.0a
+ * Plugin URI:        https://github.com/spiritoffootball/pledgeball-client
  * GitHub Plugin URI: https://github.com/spiritoffootball/pledgeball-client
- * Description: Enables access to the Pledgeball API.
- * Author: Christian Wach
- * Version: 1.0a
- * Author URI: https://theball.tv
- * Text Domain: pledgeball-client
- * Domain Path: /languages
+ * Author:            Christian Wach
+ * Author URI:        https://theball.tv
+ * Requires at least: 5.7
+ * Requires PHP:      7.4
+ * License:           GPLv2 or later
+ * License URI:       https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * Text Domain:       pledgeball-client
+ * Domain Path:       /languages
  *
  * @package Pledgeball_Client
- * @since 1.0
  */
 
 // Exit if accessed directly.
